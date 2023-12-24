@@ -1,9 +1,9 @@
 import React from "react";
-import { sidebarLinks } from "../../../constants";
+import { sidebarLinks } from "../../../../constants";
 import { Link } from "react-router-dom";
-import logout from "../../../assets/images/logout.svg";
+import logout from "../../../../assets/images/logout.svg";
 
-export default function Sidebar() {
+export default function LeftSidebar() {
     return (
         <section className="custom-scrollbar bg-ulcl-blue sticky left-0 top-0 z-20 h-screen w-fit flex-col justify-between overflow-auto border-r-dark-4 pb-5 pt-28 max-md:hidden">
             <div className="flex w-full flex-1 flex-col gap-6 px-6">

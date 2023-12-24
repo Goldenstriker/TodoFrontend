@@ -8,6 +8,6 @@ export default class TodoApiService {
 
     public getAllTodos(pageSize: number, pageNumber: number): Promise<AxiosResponse<TodoList>> {
         const axios = AxiosHelper.getAxiosInstance();
-        return axios.get<TodoList>(`${this.hostUrl}/todos?pageSize=${pageSize}&pageNumber=${pageNumber}`);
+        return axios.get<TodoList>(`${this.hostUrl}/todolists?pageSize=${pageSize}&pageNumber=${pageNumber}`);
     }
 }

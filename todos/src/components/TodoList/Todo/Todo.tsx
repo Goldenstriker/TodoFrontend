@@ -2,9 +2,7 @@ import React from "react";
 import ITodoProps from "./ITodoProps";
 
 const Todo: React.FunctionComponent<ITodoProps> = (props) => {
-    return (<div className="p-1 flex flex-row">
-        <div>{props.todoItem.title}</div>
-    </div>);
+    return (<div>{props.todoItem.title}</div>);
 }
 
 export default Todo;

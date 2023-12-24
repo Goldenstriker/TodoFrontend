@@ -1,26 +1,27 @@
-import React, { useEffect, useState } from "react";
-import TodoApiService from "../../service/TodoApiService";
-import TodoResult from "../../models/TodoResult";
-import Todo from "./Todo/Todo";
+import React from "react";
+import { ITodoListProps } from "./ITodoListProps";
+import Clock from "../Icon/Clock";
 
-const TodoList: React.FunctionComponent = (props: any) => {
-    const [todoList, setTodoList] = useState<TodoResult>();
-    const [pageNumber, setTodoPageNumber] = useState<number>(1);
-    useEffect(() => {
-        const apiService: TodoApiService = new TodoApiService();
-        try {
-            apiService.getAllTodos(10, pageNumber)
-                .then(r => setTodoList(r.data));
-        }
-        catch (e) {
-            console.log(e);
-        }
+const TodoList: React.FunctionComponent<ITodoListProps> = (props: ITodoListProps) => {
+    const { id, description, title, todoItems } = props.todoList;
 
-    }, []);
+    const isTodoOverDue = todoItems.some(x => x.dueDate != undefined && (new Date(x.dueDate) < new Date()));
 
-    return (<div className="flex flex-col">
-        {todoList && todoList.todos.length > 0 && todoList.todos.map(item => (<Todo todoItem={item} />))}
-    </div>)
+    return (
+        <div className="p-2 flex flex-col">
+            <div className="flex flex-row">
+                <div className={`text-lg ${isTodoOverDue ? 'text-rose-600' : 'text-textBlackColor'} font-bold`}>
+                    {title}
+                </div>
+                <div className="w-1">
+                    {isTodoOverDue ? (<Clock />) : ""}
+                </div>
+            </div>
+
+            <p className="italic text-sm">
+                {description}
+            </p>
+        </div>);
 }
 
 
