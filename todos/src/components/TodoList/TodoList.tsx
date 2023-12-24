@@ -5,9 +5,17 @@ import Todo from "./Todo/Todo";
 
 const TodoList: React.FunctionComponent = (props: any) => {
     const [todoList, setTodoList] = useState<TodoResult>();
+    const [pageNumber, setTodoPageNumber] = useState<number>(1);
     useEffect(() => {
         const apiService: TodoApiService = new TodoApiService();
-        apiService.getAllTodos().then(r => setTodoList(r.data));
+        try {
+            apiService.getAllTodos(10, pageNumber)
+                .then(r => setTodoList(r.data));
+        }
+        catch (e) {
+            console.log(e);
+        }
+
     }, []);
 
     return (<div className="flex flex-col">
