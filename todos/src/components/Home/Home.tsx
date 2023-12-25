@@ -9,13 +9,9 @@ const Home: React.FunctionComponent = () => {
     const [pageNumber, setTodoPageNumber] = useState<number>(1);
     useEffect(() => {
         const apiService: TodoApiService = new TodoApiService();
-        try {
-            apiService.getAllTodos(100, pageNumber)
-                .then(r => setTodoResult(r.data));
-        }
-        catch (e) {
-            console.log(e);
-        }
+        apiService.getAllTodos(100, pageNumber)
+            .then(r => setTodoResult(r.data))
+            .catch(error => console.log(error));
 
     }, []);
 

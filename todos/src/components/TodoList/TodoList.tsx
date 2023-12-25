@@ -9,13 +9,11 @@ const TodoList: React.FunctionComponent<ITodoListProps> = (props: ITodoListProps
 
     return (
         <div className="p-2 flex flex-col">
-            <div className="flex flex-row">
-                <div className={`text-lg ${isTodoOverDue ? 'text-rose-600' : 'text-textBlackColor'} font-bold`}>
+            <div className="flex flex-row gap-1 items-baseline">
+                <div className="text-lg text-textBlackColor font-bold">
                     {title}
                 </div>
-                <div className="w-1">
-                    {isTodoOverDue ? (<Clock />) : ""}
-                </div>
+                {isTodoOverDue ? (<Clock className={`${isTodoOverDue ? 'text-rose-600' : 'text-textBlackColor'} w-3 h-3`} />) : ""}
             </div>
 
             <p className="italic text-sm">
